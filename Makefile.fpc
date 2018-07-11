@@ -1,0 +1,10 @@
+[package]
+name=annealing
+version=1.0.0
+
+[target]
+units=annealing
+examples=imganneal
+
+[install]
+fpcpackage=y
