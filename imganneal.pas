@@ -143,14 +143,19 @@ function TAdjacentEnergyProblem.Next(var S : TImageState) : TImageState;
 var
     U : TImageState;
 begin
+    { If the state has been visited before, revert the last swap
+      and regenerate all random variables }
     if S.Visited then
     begin
         Shuffle(S);
         Roll(S);
     end;
+
+    { Swap pixels and mark the current state as visited }
     Shuffle(S);
     S.Visited := true;
 
+    { Initialize the next state and assign it the current energy }
     U.Image := S.Image;
     U.Visited := false;
     Roll(U);
