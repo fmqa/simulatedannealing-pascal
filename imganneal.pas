@@ -67,10 +67,10 @@ begin
     begin
         for X := 0 to Image.Width - 1 do
         begin
-            C.red := random(65536);
-            C.green := random(65536);
-            C.blue := random(65536);
-            C.alpha := 65535;
+            C.red := random(256) shl 8;
+            C.green := random(256) shl 8;
+            C.blue := random(256) shl 8;
+            C.alpha := 65280;
             Image.Colors[X, Y] := C;
         end;
     end;
@@ -81,9 +81,9 @@ function Manhattan(const P, Q : TFPColor) : longword;
 var
     DR, DG, DB : longint;
 begin
-    DR := longint(P.red) - longint(Q.red);
-    DG := longint(P.green) - longint(Q.green);
-    DB := longint(P.blue) - longint(Q.blue);
+    DR := longint(P.red shr 8) - longint(Q.red shr 8);
+    DG := longint(P.green shr 8) - longint(Q.green shr 8);
+    DB := longint(P.blue shr 8) - longint(Q.blue shr 8);
     Result := abs(DR) + abs(DG) + abs(DB);
 end;
 
