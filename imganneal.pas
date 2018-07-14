@@ -77,7 +77,7 @@ begin
 end;
 
 { Compute Manhattan/Taxicab distance between RGB components of given colors }
-function Manhattan(const P, Q : TFPColor) : longword;
+function Manhattan(const P, Q : TFPColor) : longword; inline;
 var
     DR, DG, DB : longint;
 begin
@@ -89,7 +89,7 @@ end;
 
 { Calculate the sum of Manhattan distances between each pixel and 
   its N, W neighbors }
-function Objective(const Image : TFPCustomImage) : longword;
+function Objective(const Image : TFPCustomImage) : longword; inline;
 var
     X, Y : integer;
     S : longword;
@@ -107,7 +107,7 @@ begin
 end;
 
 { Swap pixel at (X, Y) with pixel at (X+DX, Y+DY) in the image state }
-procedure Shuffle(const S : TImageState);
+procedure Shuffle(const S : TImageState); inline;
 var
     T : TFPColor;
 begin
@@ -117,7 +117,7 @@ begin
 end;
 
 { Randomize X, Y, DX, DY }
-procedure Roll(var S : TImageState);
+procedure Roll(var S : TImageState); inline;
 begin
     S.X := 1 + Random(S.Image.Width - 2);
     S.Y := 1 + Random(S.Image.Height - 2);
